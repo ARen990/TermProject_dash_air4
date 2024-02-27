@@ -18,4 +18,6 @@ import pandas as pd
 
 pd_from_dict = pd.DataFrame.from_dict(response_json["stations"][0]["data"])
 print(pformat(pd_from_dict))
-pd_from_dict.to_csv(f"air4thai_{station_id}_{start_date}_{end_date}.csv")
+pd_from_dict.to_csv(f"air4thai_data.csv")
+
+#pd_from_dict.to_csv(f"air4thai_{station_id}_{start_date}_{end_date}.csv")
