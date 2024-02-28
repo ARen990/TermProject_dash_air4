@@ -3,7 +3,6 @@ from dash import Dash, dcc, html
 from dash.dependencies import Output, Input
 import pandas as pd
 
-
 # Fetch data from Air4Thai API
 station_id = "44t"
 param = "PM25,PM10,O3,CO,NO2,SO2,WS,TEMP,RH,WD,BP,RAIN"
@@ -25,16 +24,22 @@ data = pd.read_csv("air4thai_data.csv")
 data["DATETIMEDATA"] = pd.to_datetime(data["DATETIMEDATA"], format="%Y-%m-%d %H:%M:%S")
 data.sort_values("DATETIMEDATA", inplace=True)
 
+# Set the threshold for non-null values
+threshold_percentage = 50
+threshold = len(data) * (1 - threshold_percentage / 100)
+
+# Drop columns with more than 50% NaN values
+data.dropna(axis=1, thresh=threshold, inplace=True)
+
 # Fill null values with the mean of each column
 data.fillna(data.mean(), inplace=True)
 
 # Handle zeros separately
-columns_to_handle_zeros = ["Temperature", "Relative Humidity", "Atmospheric Pressure"]
+columns_to_handle_zeros = ["Temperature", "Relative Humidity", "Atmospheric Pressure", "Wind Direction"]
 
 for column in columns_to_handle_zeros:
     data.dropna(subset=columns_to_handle_zeros, inplace=True)
     data[column].replace(0, data[column].mean(), inplace=True)
-    
 
 # Create Dash app
 external_stylesheets = [
@@ -47,7 +52,7 @@ app.layout = html.Div(
     children=[
         html.Div(
             children=[
-                html.P(children="🌍", className="header-emoji"),
+                html.P(children="🍃😎🍃", className="header-emoji"),
                 html.H1(
                     children="Air Quality Analytics", className="header-title"
                 ),
@@ -94,9 +99,19 @@ app.layout = html.Div(
         html.Div(
             children=[
                 html.Div(
-                    children=dcc.Graph(
-                        id="parameter-chart", config={"displayModeBar": False},
-                    ),
+                    children=[
+                        dcc.Graph(
+                            id="parameter-chart", config={"displayModeBar": False},
+                        ),
+                    ],
+                    className="card",
+                ),
+                html.Div(
+                    children=[
+                        dcc.Graph(
+                            id="histogram-chart", config={"displayModeBar": False},
+                        ),
+                    ],
                     className="card",
                 ),
             ],
@@ -135,6 +150,37 @@ def update_chart(parameter, start_date, end_date):
         },
     }
     return chart_figure
+
+@app.callback(
+    Output("histogram-chart", "figure"),
+    [
+        Input("parameter-filter", "value"),
+        Input("date-range", "start_date"),
+        Input("date-range", "end_date"),
+    ],
+)
+def update_histogram(parameter, start_date, end_date):
+    mask = (
+        (data["DATETIMEDATA"] >= start_date)
+        & (data["DATETIMEDATA"] <= end_date)
+    )
+    filtered_data = data.loc[mask, :]
+    histogram_figure = {
+        "data": [
+            {
+                "x": filtered_data[parameter],
+                "type": "histogram",
+                "marker": {"color": "#1F77B4"},
+            },
+        ],
+        "layout": {
+            "title": {"text": f"{parameter} Histogram", "x": 0.05, "xanchor": "left"},
+            "xaxis": {"fixedrange": True},
+            "yaxis": {"fixedrange": True},
+            "colorway": ["#1F77B4"],
+        },
+    }
+    return histogram_figure
 
 if __name__ == "__main__":
     app.run_server(debug=True)
