@@ -41,7 +41,7 @@ app.layout = html.Div(
                 ),
                 html.P(
                     children="Analyze air quality parameters"
-                    " including PM25, PM10, O3, CO, NO2, SO2, WS, TEMP, RH, WD",
+                    " including ,DATETIMEDATA,PM25,PM10,O3,CO,NO2,SO2,Wind Speed,Temperature,Relative Humidity,Wind Direction,Atmospheric Pressure,RAIN",
                     className="header-description",
                 ),
             ],
