@@ -56,7 +56,7 @@ app.layout = html.Div(
                             id="parameter-filter",
                             options=[
                                 {"label": param, "value": param}
-                                for param in data.columns[1:]  # Skip the 'DATETIMEDATA' column
+                                for param in data.columns[2:]  # Skip the 'DATETIMEDATA' column
                             ],
                             value="PM25",  # Set default parameter
                             clearable=False,
