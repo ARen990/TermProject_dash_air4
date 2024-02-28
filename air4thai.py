@@ -3,6 +3,7 @@ from dash import Dash, dcc, html
 from dash.dependencies import Output, Input
 import pandas as pd
 
+
 # Fetch data from Air4Thai API
 station_id = "44t"
 param = "PM25,PM10,O3,CO,NO2,SO2,WS,TEMP,RH,WD,BP,RAIN"
@@ -23,6 +24,17 @@ data = pd.read_csv("air4thai_data.csv")
 # Convert "DATETIMEDATA" to datetime format
 data["DATETIMEDATA"] = pd.to_datetime(data["DATETIMEDATA"], format="%Y-%m-%d %H:%M:%S")
 data.sort_values("DATETIMEDATA", inplace=True)
+
+# Fill null values with the mean of each column
+data.fillna(data.mean(), inplace=True)
+
+# Handle zeros separately
+columns_to_handle_zeros = ["Temperature", "Relative Humidity", "Atmospheric Pressure"]
+
+for column in columns_to_handle_zeros:
+    data.dropna(subset=columns_to_handle_zeros, inplace=True)
+    data[column].replace(0, data[column].mean(), inplace=True)
+    
 
 # Create Dash app
 external_stylesheets = [
