@@ -1,3 +1,4 @@
+from pycaret.classification import *
 import requests
 from dash import Dash, dcc, html
 from dash.dependencies import Output, Input
@@ -40,6 +41,9 @@ columns_to_handle_zeros = ["Temperature", "Relative Humidity", "Atmospheric Pres
 for column in columns_to_handle_zeros:
     data.dropna(subset=columns_to_handle_zeros, inplace=True)
     data[column].replace(0, data[column].mean(), inplace=True)
+
+# Creata CSV flie for data cleaned
+#data.to_csv(f"air4thai_isclaer.csv")
 
 # Create Dash app
 external_stylesheets = [
