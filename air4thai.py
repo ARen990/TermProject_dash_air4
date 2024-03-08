@@ -41,6 +41,10 @@ for column in columns_to_handle_zeros:
     data.dropna(subset=columns_to_handle_zeros, inplace=True)
     data[column].replace(0, data[column].mean(), inplace=True)
 
+
+# saving the dataframe
+data.to_csv('air4god_data.csv')
+
 # Create Dash app
 external_stylesheets = [
     {"href": "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap", "rel": "stylesheet"},
