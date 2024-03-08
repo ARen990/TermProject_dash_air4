@@ -1,3 +1,4 @@
+from pycaret.classification import *
 import requests
 from dash import Dash, dcc, html
 from dash.dependencies import Output, Input
@@ -41,9 +42,14 @@ for column in columns_to_handle_zeros:
     data.dropna(subset=columns_to_handle_zeros, inplace=True)
     data[column].replace(0, data[column].mean(), inplace=True)
 
+<<<<<<< HEAD
 
 # saving the dataframe
 data.to_csv('air4god_data.csv')
+=======
+# Creata CSV flie for data cleaned
+#data.to_csv(f"air4thai_isclaer.csv")
+>>>>>>> 4e8d9e80b47b7b2477645f599d55c5d290053f02
 
 # Create Dash app
 external_stylesheets = [
