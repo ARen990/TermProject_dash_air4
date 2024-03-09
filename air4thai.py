@@ -1,6 +1,8 @@
 from pycaret.classification import *
 import requests
-from dash import Dash, dcc, html
+import dash
+import dash_bootstrap_components as dbc
+from dash import dcc, html
 from dash.dependencies import Output, Input
 import pandas as pd
 
@@ -42,14 +44,8 @@ for column in columns_to_handle_zeros:
     data.dropna(subset=columns_to_handle_zeros, inplace=True)
     data[column].replace(0, data[column].mean(), inplace=True)
 
-#data.to_csv('air4god_data.csv')
-
-
 # Create Dash app
-external_stylesheets = [
-    {"href": "https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap", "rel": "stylesheet"},
-]
-app = Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Air Quality Analytics: Understand Your Air"
 
 app.layout = html.Div(
