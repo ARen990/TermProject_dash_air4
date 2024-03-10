@@ -71,7 +71,7 @@ body {
 }
 
 .menu-title {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: bold;
     color: #9a0707;
 }
@@ -80,4 +80,10 @@ body {
     display: flex;
     justify-content: space-evenly;
     color : #51645b ;
+}
+
+.summary-table{
+    width: 50%;
+    margin: 0 auto;
+    color: #155d21;
 }
