@@ -5,7 +5,7 @@ body {
 }
 
 .header {
-    background-color: #222222;
+    background-color: #155d21;
     height: 288px;
     padding: 16px 0 0 0;
 }
@@ -53,7 +53,7 @@ body {
     justify-content: space-evenly;
     padding-top: 24px;
     margin: -80px auto 0 auto;
-    background-color: #FFFFFF;
+    background-color: #8dd457;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
 }
 
@@ -73,5 +73,11 @@ body {
 .menu-title {
     margin-bottom: 6px;
     font-weight: bold;
-    color: #079A82;
+    color: #9a0707;
+}
+
+.dropdown{
+    display: flex;
+    justify-content: space-evenly;
+    color : #51645b ;
 }
