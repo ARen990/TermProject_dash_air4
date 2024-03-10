@@ -146,7 +146,7 @@ def update_chart(parameter, start_date, end_date):
             "title": {"text": f"{parameter} Levels", "x": 0.05, "xanchor": "left"},
             "xaxis": {"fixedrange": True},
             "yaxis": {"fixedrange": True},
-            "colorway": ["#1F77B4"],
+            "colorway": ["#155d21"],
         },
     }
     return chart_figure
@@ -170,14 +170,14 @@ def update_histogram(parameter, start_date, end_date):
             {
                 "x": filtered_data[parameter],
                 "type": "histogram",
-                "marker": {"color": "#1F77B4"},
+                "marker": {"color": "#155d21"},
             },
         ],
         "layout": {
             "title": {"text": f"{parameter} Histogram", "x": 0.05, "xanchor": "left"},
             "xaxis": {"fixedrange": True},
             "yaxis": {"fixedrange": True},
-            "colorway": ["#1F77B4"],
+            "colorway": ["#155d21"],
         },
     }
     return histogram_figure
