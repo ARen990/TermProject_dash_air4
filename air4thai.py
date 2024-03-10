@@ -108,14 +108,6 @@ app.layout = html.Div(
                     ],
                     className="card",
                 ),
-                html.Div(
-                    children=[
-                        dcc.Graph(
-                            id="histogram-chart", config={"displayModeBar": False},
-                        ),
-                    ],
-                    className="card",
-                ),
             ],
             className="wrapper",
         ),
@@ -169,38 +161,6 @@ def update_chart(parameter, start_date, end_date):
         },
     }
     return chart_figure
-
-# Define a callback to update the histogram chart based on the selected parameter and date range
-@app.callback(
-    Output("histogram-chart", "figure"),
-    [
-        Input("parameter-filter", "value"),
-        Input("date-range", "start_date"),
-        Input("date-range", "end_date"),
-    ],
-)
-def update_histogram(parameter, start_date, end_date):
-    mask = (
-        (data["DATETIMEDATA"] >= start_date)
-        & (data["DATETIMEDATA"] <= end_date)
-    )
-    filtered_data = data.loc[mask, :]
-    histogram_figure = {
-        "data": [
-            {
-                "x": filtered_data[parameter],
-                "type": "histogram",
-                "marker": {"color": "#155d21"},
-            },
-        ],
-        "layout": {
-            "title": {"text": f"{parameter} Histogram", "x": 0.05, "xanchor": "left"},
-            "xaxis": {"fixedrange": True},
-            "yaxis": {"fixedrange": True},
-            "colorway": ["#155d21"],
-        },
-    }
-    return histogram_figure
 
 # Define a callback to update the summary table based on the selected date range
 @app.callback(
