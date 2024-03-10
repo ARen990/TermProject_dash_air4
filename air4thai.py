@@ -5,6 +5,8 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html
 from dash.dependencies import Output, Input
 import pandas as pd
+import dash_table
+from dash_table.Format import Format, Scheme
 
 # Fetch data from Air4Thai API
 station_id = "44t"
@@ -117,9 +119,26 @@ app.layout = html.Div(
             ],
             className="wrapper",
         ),
+        html.Div(
+            children=[
+                dash_table.DataTable(
+                    id='summary-table',
+                    columns=[
+                        {"name": "Parameter", "id": "Parameter"},
+                        {"name": "Min", "id": "Min", "type": "numeric", "format": Format(precision=2, scheme=Scheme.fixed)},
+                        {"name": "Max", "id": "Max", "type": "numeric", "format": Format(precision=2, scheme=Scheme.fixed)},
+                        {"name": "Mean", "id": "Mean", "type": "numeric", "format": Format(precision=2, scheme=Scheme.fixed)},
+                    ],
+                    style_table={'height': '300px', 'overflowY': 'auto'},
+                )
+            ],
+            className="summary-table"
+            
+        ),
     ]
 )
 
+# Define a callback to update the parameter chart based on the selected parameter and date range
 @app.callback(
     Output("parameter-chart", "figure"),
     [
@@ -151,6 +170,7 @@ def update_chart(parameter, start_date, end_date):
     }
     return chart_figure
 
+# Define a callback to update the histogram chart based on the selected parameter and date range
 @app.callback(
     Output("histogram-chart", "figure"),
     [
@@ -181,6 +201,30 @@ def update_histogram(parameter, start_date, end_date):
         },
     }
     return histogram_figure
+
+# Define a callback to update the summary table based on the selected date range
+@app.callback(
+    Output("summary-table", "data"),
+    [Input("date-range", "start_date"),
+    Input("date-range", "end_date")]
+)
+def update_summary_table(start_date, end_date):
+    mask = (
+        (data["DATETIMEDATA"] >= start_date)
+        & (data["DATETIMEDATA"] <= end_date)
+    )
+    filtered_data = data.loc[mask, :]
+    
+    summary_data = []
+    for param in data.columns[2:]:
+        summary_data.append({
+            "Parameter": param,
+            "Min": filtered_data[param].min(),
+            "Max": filtered_data[param].max(),
+            "Mean": filtered_data[param].mean()
+        })
+    
+    return summary_data
 
 if __name__ == "__main__":
     app.run_server(debug=True)
