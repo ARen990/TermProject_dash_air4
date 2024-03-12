@@ -1,3 +1,6 @@
+/* Import Bootstrap CSS */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+
 body {
     font-family: "Lato", sans-serif;
     margin: 0;
@@ -7,59 +10,46 @@ body {
 .header {
     background-color: #155d21;
     height: 288px;
-    padding: 16px 0 0 0;
+    padding: 16px 0;
+    text-align: center;
 }
 
 .header-emoji {
     font-size: 48px;
-    margin: 0 auto;
-    text-align: center;
 }
 
 .header-title {
     color: #FFFFFF;
     font-size: 48px;
     font-weight: bold;
-    text-align: center;
-    margin: 0 auto;
+    margin: 8px 0;
 }
 
 .header-description {
     color: #CFCFCF;
     font-size: 15px;
-    margin: 4px auto;
-    text-align: center;
+    margin: 8px auto;
     max-width: 384px;
 }
 
 .wrapper {
-    margin-right: auto;
-    margin-left: auto;
     max-width: 90%;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-top: 32px;
+    margin: 32px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.card, .summary-table {
-    width: 100%; /* Both card and table take full width */
+.card,
+.summary-table {
+    width: 100%;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
     margin-bottom: 24px;
 }
 
 .summary-table {
     font-size: 20px;
-    color: #155d21; /* Change font color to green */
-    width: 100%; /* Take full width on all screens */
-}
-
-
-.Select-control {
-    width: 100%; /* Take full width on mobile */
-    height: 48px;
+    color: #155d21;
 }
 
 .menu-title {
@@ -70,32 +60,39 @@ body {
 
 .dropdown {
     display: flex;
-    width: 100%; /* Take full width on mobile */
+    width: 100%;
     height: 50px;
     justify-content: space-evenly;
     color: #155d21;
 }
+
 .menu {
-    height: auto; /* Adjust height to auto for mobile */
-    width: 100%; /* Take full width on mobile */
     display: flex;
-    flex-direction: column; /* Stack items vertically on mobile */
+    flex-direction: column;
     justify-content: space-evenly;
     padding-top: 24px;
-    margin: -50px auto 0 auto;
+    margin: -30px auto 0 auto;
     background-color: #8dd457;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.18);
 }
 
+.Select-control {
+    width: 100%;
+    height: 48px;
+}
+
+.rc-slider-mark{
+    font-size: 30px;
+}
 @media screen and (min-width: 600px) {
-    /* Add any additional styles for larger screens here */
-    .card, .summary-table {
+    .card,
+    .summary-table {
         width: calc(50% - 12px);
     }
 
     .menu {
         width: 912px;
-        flex-direction: row; /* Arrange items side by side on larger screens */
+        flex-direction: row;
     }
 
     .Select-control {
