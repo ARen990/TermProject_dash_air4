@@ -78,12 +78,15 @@ body {
 
 .dropdown{
     display: flex;
+    width: 200px;
+    height: 50px;
     justify-content: space-evenly;
-    color : #51645b ;
+    color : #155d21 ;
 }
 
 .summary-table{
-    width: 50%;
+    width: 100%;
+    font-size: 20px;
     margin: 0 auto;
     color: #155d21;
 }
