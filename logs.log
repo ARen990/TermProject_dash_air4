@@ -1,0 +1,29 @@
+2024-03-13 00:56:46,551:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-03-13 00:56:46,552:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-03-13 00:56:46,552:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-03-13 00:56:46,552:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2024-03-13 00:56:48,850:INFO:PyCaret RegressionExperiment
+2024-03-13 00:56:48,850:INFO:Logging name: reg-default-name
+2024-03-13 00:56:48,850:INFO:ML Usecase: MLUsecase.REGRESSION
+2024-03-13 00:56:48,850:INFO:version 3.3.0
+2024-03-13 00:56:48,850:INFO:Initializing setup()
+2024-03-13 00:56:48,850:INFO:self.USI: a09a
+2024-03-13 00:56:48,850:INFO:self._variable_keys: {'fold_generator', 'gpu_param', 'USI', 'y', 'logging_param', 'exp_name_log', 'idx', 'target_param', 'seed', '_available_plots', 'memory', 'n_jobs_param', 'fold_shuffle_param', 'y_test', 'transform_target_param', 'exp_id', 'html_param', 'data', 'X', '_ml_usecase', 'log_plots_param', 'fold_groups_param', 'X_test', 'X_train', 'pipeline', 'y_train', 'gpu_n_jobs_param'}
+2024-03-13 00:56:48,850:INFO:Checking environment
+2024-03-13 00:56:48,850:INFO:python_version: 3.11.8
+2024-03-13 00:56:48,851:INFO:python_build: ('tags/v3.11.8:db85d51', 'Feb  6 2024 22:03:32')
+2024-03-13 00:56:48,851:INFO:machine: AMD64
+2024-03-13 00:56:48,851:INFO:platform: Windows-10-10.0.22621-SP0
+2024-03-13 00:56:48,856:INFO:Memory: svmem(total=17095180288, available=4666630144, percent=72.7, used=12428550144, free=4666630144)
+2024-03-13 00:56:48,856:INFO:Physical Core: 4
+2024-03-13 00:56:48,856:INFO:Logical Core: 8
+2024-03-13 00:56:48,856:INFO:Checking libraries
+2024-03-13 00:56:48,856:INFO:System:
+2024-03-13 00:56:48,856:INFO:    python: 3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]
+2024-03-13 00:56:48,856:INFO:executable: C:\Users\wator\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe
+2024-03-13 00:56:48,856:INFO:   machine: Windows-10-10.0.22621-SP0
+2024-03-13 00:56:48,856:INFO:PyCaret required dependencies:
