@@ -82,7 +82,7 @@ body {
 }
 
 .rc-slider-mark{
-    font-size: 30px;
+    font-size: 16px;
 }
 @media screen and (min-width: 600px) {
     .card,
